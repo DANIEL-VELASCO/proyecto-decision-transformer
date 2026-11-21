@@ -1,0 +1,10 @@
+# Datos, modelos y salidas pesadas
+*.pt
+*.pth
+*.d3
+*.gif
+*.mp4
+d3rlpy_logs/
+minari_datasets/
+.ipynb_checkpoints/
+__pycache__/
