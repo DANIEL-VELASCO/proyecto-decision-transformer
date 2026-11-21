@@ -12,5 +12,7 @@ Los datos provienen de Minari (MuJoCo Hopper y HalfCheetah) y los agentes se eva
 | Notebook | Contenido |
 |---|---|
 | `00_prueba_viabilidad_colab.ipynb` | Prueba de punta a punta con presupuestos pequeños en Google Colab |
+| `01_experimentos_completos.ipynb` | Los cuatro modelos en 2 robots × 3 niveles de datos × 3 semillas, con 100 mil pasos de entrenamiento |
 
-Los notebooks se ejecutan en Google Colab con GPU.
+Los notebooks se ejecutan en Google Colab con GPU. Los resultados del notebook 01 se guardan en Google Drive,
+en la carpeta `proyecto_decision_transformer`.
