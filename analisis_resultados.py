@@ -110,3 +110,24 @@ if os.path.isdir(curv):
 else:
     print("Sin carpeta resultados/curvas: no se genera la Fig. 4")
 print("Figuras en", FIG)
+
+# ---------- Fig. 5: sensibilidad del Decision Transformer al retorno objetivo ----------
+ro = f"{RES}/retorno_objetivo.csv"
+if os.path.exists(ro):
+    r = pd.read_csv(ro)
+    fig, axes = plt.subplots(1, 2, figsize=(3.5, 2.3), sharey=True)
+    for ax, env in zip(axes, ENVS):
+        for q, mk in zip(QUALITIES, ["s", "^", "o"]):
+            s = r[(r.Robot == env) & (r.Datos == q)].groupby("Fracción")
+            m, lo, hi = s["Puntaje normalizado"].mean(), s["Puntaje normalizado"].min(), s["Puntaje normalizado"].max()
+            ax.plot(m.index * 100, m.values, marker=mk, ms=3, lw=0.9, label=q)
+            ax.fill_between(m.index * 100, lo.values, hi.values, alpha=0.15)
+        req = r[r.Robot == env].groupby("Fracción")["Retorno pedido"].first()
+        ax.plot(req.index * 100, norm(env, req.values), "k:", lw=0.8, label="pedido")
+        ax.set_title(NAMES[env]); ax.grid(alpha=0.3)
+        ax.set_xticks([25, 50, 75, 100, 125])
+    axes[0].set_ylabel("Puntaje normalizado"); axes[0].legend(fontsize=6, frameon=False)
+    fig.supxlabel("Retorno pedido (% del retorno medio del conjunto expert)", fontsize=8)
+    plt.tight_layout(); plt.savefig(f"{FIG}/fig5_retorno_objetivo.png", dpi=300); plt.close()
+    print("\nRetorno objetivo (media de semillas)\n",
+          r.groupby(["Robot", "Datos", "Fracción"])["Puntaje normalizado"].mean().unstack().round(1))
