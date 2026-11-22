@@ -95,6 +95,17 @@ Puntaje normalizado, media ± desviación entre las 3 semillas:
   <img src="informe/figuras/fig5_retorno_objetivo.png" width="420" alt="Sensibilidad al retorno objetivo">
 </p>
 
+## Los agentes en el simulador
+
+Políticas entrenadas con los datos `expert` (semilla 1), grabadas con [`03_videos.ipynb`](03_videos.ipynb).
+El Decision Transformer imita bien al experto en los dos robots; el Random Forest, con un error de validación
+parecido, termina en estados que no están en los datos: en Hopper se cae y en HalfCheetah se voltea y no avanza.
+
+| | Decision Transformer | Random Forest |
+|---|---|---|
+| **Hopper** | <img src="media/hopper_dt.gif" width="300" alt="Hopper con Decision Transformer"><br>Salta sin caerse los 700 pasos grabados | <img src="media/hopper_random_forest.gif" width="300" alt="Hopper con Random Forest"><br>Se cae hacia el paso 330 |
+| **HalfCheetah** | <img src="media/halfcheetah_dt.gif" width="300" alt="HalfCheetah con Decision Transformer"><br>Corre a la velocidad del experto | <img src="media/halfcheetah_random_forest.gif" width="300" alt="HalfCheetah con Random Forest"><br>Se voltea al inicio y queda patas arriba |
+
 El análisis completo está en el [informe](informe/Informe_Proyecto_DecisionTransformer.pdf) (formato IEEE
 Transactions on Artificial Intelligence).
 
@@ -105,6 +116,8 @@ Transactions on Artificial Intelligence).
 | [`00_prueba_viabilidad_colab.ipynb`](00_prueba_viabilidad_colab.ipynb) | Prueba de punta a punta con presupuestos pequeños y estimación del costo | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DANIEL-VELASCO/proyecto-decision-transformer/blob/main/00_prueba_viabilidad_colab.ipynb) |
 | [`01_experimentos_completos.ipynb`](01_experimentos_completos.ipynb) | Preparación de datos, los cuatro modelos, las 72 corridas y su análisis | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DANIEL-VELASCO/proyecto-decision-transformer/blob/main/01_experimentos_completos.ipynb) |
 | [`02_retorno_objetivo.ipynb`](02_retorno_objetivo.ipynb) | Sensibilidad del DT al retorno objetivo, sin volver a entrenar | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DANIEL-VELASCO/proyecto-decision-transformer/blob/main/02_retorno_objetivo.ipynb) |
+| [`03_videos.ipynb`](03_videos.ipynb) | Graba los GIF de los agentes en el simulador | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DANIEL-VELASCO/proyecto-decision-transformer/blob/main/03_videos.ipynb) |
+| [`media/`](media) | GIF de los agentes | |
 | [`analisis_resultados.py`](analisis_resultados.py) | Genera las tablas y figuras del informe a partir de `resultados/` | |
 | [`resultados/`](resultados) | CSV por semilla, curvas de pérdida, datos y prueba del retorno objetivo | |
 | [`informe/`](informe) | Informe en PDF y Word, y sus figuras | |

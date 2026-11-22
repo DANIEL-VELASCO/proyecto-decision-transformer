@@ -8,3 +8,4 @@ d3rlpy_logs/
 minari_datasets/
 .ipynb_checkpoints/
 __pycache__/
+!media/*.gif
