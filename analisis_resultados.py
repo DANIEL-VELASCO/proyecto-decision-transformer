@@ -92,7 +92,7 @@ plt.tight_layout(); plt.savefig(f"{FIG}/fig3_episodios.png", dpi=300); plt.close
 # ---------- Fig. 4: curvas de pérdida (si se descargó la carpeta curvas) ----------
 curv = f"{RES}/curvas"
 if os.path.isdir(curv):
-    fig, axes = plt.subplots(1, 2, figsize=(3.5, 2.2), sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(3.5, 2.8), sharey=True)
     for ax, (m, slug) in zip(axes, [("BC · MLP", "bc_mlp"), ("Decision Transformer", "decision_transformer")]):
         for env in ENVS:
             for q, ls in zip(QUALITIES, [":", "--", "-"]):
@@ -102,8 +102,10 @@ if os.path.isdir(curv):
                 ax.plot(c.index / 1000, c.values, ls=ls, lw=0.9, color="#4c72b0" if env == "hopper" else "#c44e52",
                         label=f"{NAMES[env]} {q}")
         ax.set_yscale("log"); ax.set_title(SHORT[m]); ax.set_xlabel("Paso (miles)"); ax.grid(alpha=0.3)
-    axes[0].set_ylabel("Error cuadrático medio"); axes[1].legend(fontsize=5.5, frameon=False)
-    plt.tight_layout(); plt.savefig(f"{FIG}/fig4_curvas.png", dpi=300); plt.close()
+    axes[0].set_ylabel("Error cuadrático medio")
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, ncol=2, loc="lower center", frameon=False, fontsize=6, bbox_to_anchor=(0.5, 0.0))
+    plt.tight_layout(rect=(0, 0.2, 1, 1)); plt.savefig(f"{FIG}/fig4_curvas.png", dpi=300); plt.close()
     print("Curvas: listo")
 else:
     print("Sin carpeta resultados/curvas: no se genera la Fig. 4")
