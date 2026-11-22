@@ -1,0 +1,11 @@
+gymnasium[mujoco]
+mujoco
+minari[all]
+d3rlpy
+transformers
+torch
+scikit-learn
+numpy
+pandas
+matplotlib
+imageio
